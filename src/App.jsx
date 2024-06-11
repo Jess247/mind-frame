@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import Todo from './components/Todo'
 
 function App() {
   const time = new Date()
@@ -7,8 +7,11 @@ function App() {
   const [weather, setWeather] = useState({})
   const [currentTime, setCurrentTime] = useState(time.toLocaleString('de-DE', {hour: '2-digit', minute: '2-digit'}))
   const [quote, setQuote] = useState({})
+  const [showTodo, setShowTodo] = useState(true)
+
   const regionNames = new Intl.DisplayNames(['en'], {type: 'region'})
-  
+
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => 
       fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
@@ -70,12 +73,16 @@ function App() {
     .catch(err => console.log(`The following error occurred: ${err}`))
   },[])
 
+  function handleClick() {
+    setShowTodo(prevShowTodo => !prevShowTodo)
+  }
+
 
   return (
     <main className={`min-h-screen flex flex-col justify-between p-8 bg-no-repeat bg-cover text-white text-shadow text-xl`} 
           style={{backgroundImage: `url(${bg})`}}>
         <div className='flex justify-between text-shadow'>
-          <p className='drop-shadow'>Focus</p>
+          <button className='drop-shadow hover:scale-105'>Focus</button>
           <div className='flex items-center justify-end flex-wrap w-32'>
             <img className='w-14' 
                  src={weather.icon} 
@@ -89,7 +96,7 @@ function App() {
             <span>{currentTime}</span>
           </time>
           <figure>
-            <blockquote cite='https://type.fit/api/quotes' className='text-lg font-xl'>
+            <blockquote cite='https://type.fit/api/quotes' className='text-lg font-xl italic'>
               "{quote.text}"
               <figcaption className='text-right font-thin'>by {quote.author?.split(',').slice(0,1)}</figcaption>
             </blockquote>
@@ -97,14 +104,8 @@ function App() {
         </div>
         <div className='flex justify-between text-shadow'>
           <p>{weather.city}, {weather.country}</p>
-          <button>todo</button>
-          <div className='absolute right-8 bottom-20 opacity-0'>
-            <p>Todo</p>
-            <ul>
-              <li><input type='checkbox' /> Sample todo <button>del</button></li>
-            </ul>
-            <input type='text'/>
-          </div>
+          <button onClick={handleClick} className="hover:scale-105">Todo</button>
+          <Todo showTodo={showTodo}/>
         </div>
     </main>
   )
