@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
+
 export default function Focus() {
     const [isFocus, setIsFocus] = useState(true) 
     const [value, setValue] = useState(0)
@@ -13,6 +14,7 @@ export default function Focus() {
 
     useEffect(() => {
         let timer
+
         if (value === maxVal || !on) {
             if(!on && value < maxVal) {
                 clearInterval(timer)
@@ -24,7 +26,6 @@ export default function Focus() {
         } 
         
         if(on) {
-            beep.play()
             timer = setInterval(() => {
                 setValue(prevVal => prevVal + 1)
             }, 1000)

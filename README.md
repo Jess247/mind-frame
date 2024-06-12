@@ -1,8 +1,8 @@
-# React + Vite
+# Browser extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This extension is build with React JS and styled with tailwind.
+It displays the users location, current weather and the time. Theres a bulid in promodoro timer and a todo list.
 
-Currently, two official plugins are available:
+This project is a template that's why no data is saved.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The background image is randomly generated through the unsplash API and the weather is getting its data from openweathermap API. 
