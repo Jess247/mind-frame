@@ -3,11 +3,13 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
 export default function Focus() {
-    const [isFocus, setIsFocus] = useState(false) 
+    const [isFocus, setIsFocus] = useState(true) 
     const [value, setValue] = useState(0)
     const [on, setOn] = useState(false)
 
-    const maxVal = isFocus ? 1500 : 30
+    const maxVal = isFocus ? 1500 : 300
+    const beep = new Audio('../assets/beep.mp3')
+
 
     useEffect(() => {
         let timer
@@ -22,6 +24,7 @@ export default function Focus() {
         } 
         
         if(on) {
+            beep.play()
             timer = setInterval(() => {
                 setValue(prevVal => prevVal + 1)
             }, 1000)
@@ -58,7 +61,7 @@ export default function Focus() {
             </div>
             <button className='bg-green-400 text-black py-1 px-4 rounded-lg text-base font-bold hover:bg-slate-500/[.54]'
                     onClick={handleClick}>
-                {on ? 'Pause' : 'Focus'}
+                {on ? 'Pause' : 'Start'}
             </button>
         </section>
     )

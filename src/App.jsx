@@ -8,7 +8,8 @@ function App() {
   const [weather, setWeather] = useState({})
   const [currentTime, setCurrentTime] = useState(time.toLocaleString('de-DE', {hour: '2-digit', minute: '2-digit'}))
   const [quote, setQuote] = useState({})
-  const [showTodo, setShowTodo] = useState(true)
+  const [showTodo, setShowTodo] = useState(false)
+  const [showFocus, setShowFocus] = useState(false)
 
   const regionNames = new Intl.DisplayNames(['en'], {type: 'region'})
 
@@ -84,10 +85,11 @@ function App() {
           style={{backgroundImage: `url(${bg})`}}>
         <div className='flex justify-between text-shadow'>
           <div>
-          <button className='drop-shadow hover:scale-105'>
+          <button className='drop-shadow hover:scale-105'
+                  onClick={() => setShowFocus(prevFocus => !prevFocus)}>
             Focus
           </button>
-          <Focus/>
+          {showFocus ? <Focus/> : null}
           </div>
           <div className='flex items-center justify-end flex-wrap w-32'>
             <img className='w-14' 
@@ -110,8 +112,8 @@ function App() {
         </div>
         <div className='flex justify-between text-shadow'>
           <p>{weather.city}, {weather.country}</p>
-          <button onClick={handleClick} className="hover:scale-105">Todo</button>
-          <Todo showTodo={showTodo}/>
+          <button onClick={() => setShowTodo(prevTodo => !prevTodo)} className="hover:scale-105">Todo</button>
+          {showTodo ? <Todo/> : null}
         </div>
     </main>
   )
