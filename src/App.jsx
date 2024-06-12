@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Todo from './components/Todo'
+import Focus from './components/Focus'
 
 function App() {
   const time = new Date()
@@ -82,7 +83,12 @@ function App() {
     <main className={`min-h-screen flex flex-col justify-between p-8 bg-no-repeat bg-cover text-white text-shadow text-xl`} 
           style={{backgroundImage: `url(${bg})`}}>
         <div className='flex justify-between text-shadow'>
-          <button className='drop-shadow hover:scale-105'>Focus</button>
+          <div>
+          <button className='drop-shadow hover:scale-105'>
+            Focus
+          </button>
+          <Focus/>
+          </div>
           <div className='flex items-center justify-end flex-wrap w-32'>
             <img className='w-14' 
                  src={weather.icon} 

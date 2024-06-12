@@ -37,7 +37,8 @@ export default function Todo({showTodo}) {
               )}
             </ul>
             <div className="flex justify-between items-center mt-4">
-                <label for="todo" className="opacity-0 absolute">
+                <label for="todo" className="opacity-0 absolute
+                ">
                     New todo: 
                 </label>
                 <input 
